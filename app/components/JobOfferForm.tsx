@@ -19,16 +19,33 @@ export default function JobOfferForm({ onSubmit, isLoading = false }: JobOfferFo
     additionalDetails: '',
   });
 
+  const [salaryInput, setSalaryInput] = useState('');
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'offerSalary' ? parseFloat(value) : value,
+      [name]: name === 'offerSalary' ? (value === '' ? 0 : parseFloat(value) || 0) : value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validation
+    if (!formData.position.trim()) {
+      alert('Position title is required');
+      return;
+    }
+    if (!formData.company.trim()) {
+      alert('Company name is required');
+      return;
+    }
+    if (!formData.offerSalary || formData.offerSalary <= 0) {
+      alert('Please enter a valid salary amount');
+      return;
+    }
+
     onSubmit(formData);
   };
 
