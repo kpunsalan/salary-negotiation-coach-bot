@@ -10,13 +10,11 @@ type PageStep = 'form' | 'script' | 'practice';
 
 export default function Home() {
   const [step, setStep] = useState<PageStep>('form');
-  const [jobOffer, setJobOffer] = useState<JobOffer | null>(null);
   const [script, setScript] = useState<NegotiationScript | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleJobOfferSubmit = async (offer: JobOffer) => {
-    setJobOffer(offer);
     setIsGenerating(true);
     setError(null);
 
@@ -48,7 +46,6 @@ export default function Home() {
 
   const handleReset = () => {
     setStep('form');
-    setJobOffer(null);
     setScript(null);
     setError(null);
   };

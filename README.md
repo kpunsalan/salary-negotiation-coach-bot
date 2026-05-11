@@ -114,13 +114,58 @@ Navigate to `http://localhost:3000`
    - Practice multiple times with different strategies
    - Build confidence for your actual negotiation
 
-## 🤖 AI Integration (Future)
+## 🤖 AI Integration (Ready!)
 
-Currently, the app uses mock implementations. To integrate with OpenAI's GPT API:
+The app now uses OpenAI's GPT-4o-mini model for both script generation and coaching conversations.
 
-1. Get an API key from [OpenAI](https://openai.com/api)
-2. Add `OPENAI_API_KEY` to your `.env.local` file
-3. Update `/app/api/generate-script/route.ts` and `/app/api/coach/route.ts` to use the OpenAI API
+### Setup Complete ✅
+1. ✅ OpenAI API key added to `.env.local`
+2. ✅ OpenAI SDK installed
+3. ✅ API routes updated to use real AI
+4. ✅ Development server restarted
+
+### How It Works
+- **Script Generation**: GPT-4o-mini analyzes your job offer details and creates personalized negotiation scripts
+- **Coaching Conversations**: AI role-plays as hiring managers and provides real-time feedback on your negotiation approach
+- **Smart Feedback**: AI analyzes your messages for confidence, preparation, tone, and negotiation tactics
+
+### API Usage
+- Uses GPT-4o-mini for cost-effective, fast responses
+- Includes fallback to mock implementations if API fails
+- Structured prompts ensure consistent, helpful responses
+
+## 🧪 Testing the Application
+
+The application is now fully functional with OpenAI integration! Here's how to test it:
+
+### 1. Start the Development Server
+```bash
+npm run dev
+```
+Server runs at: http://localhost:3000
+
+### 2. Test the Complete Flow
+1. **Fill out the Job Offer Form**: Enter position, company, salary, industry, and experience
+2. **Review Generated Script**: AI creates a personalized negotiation script
+3. **Practice Conversation**: Click "Start Practice Conversation" to chat with AI coach
+4. **Get Real-time Feedback**: Click on AI responses to see coaching feedback
+
+### 3. API Testing (Optional)
+Both endpoints are working with OpenAI:
+
+**Script Generation:**
+```bash
+curl -X POST http://localhost:3000/api/generate-script \
+  -H "Content-Type: application/json" \
+  -d '{"position":"Software Engineer","company":"Tech Corp","offerSalary":100000,"industry":"Technology","experience":"3 years"}'
+```
+
+**Coaching Conversation:**
+```bash
+curl -X POST http://localhost:3000/api/coach \
+  -H "Content-Type: application/json" \
+  -d '{"message":"I would like to negotiate for a higher salary","script":{"opening":"...","keyPoints":["..."],"closingStatement":"...","anticipatedObjections":[{"objection":"...","response":"..."}]}}'
+```
 
 ## 📦 Available Scripts
 
